@@ -3,12 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Modern Drag & Drop Interface</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>This is added by Tanmay</h1>
-    <h2>This is added by sunder</h2>
-    <p>This is para by sunder</p>
-    <b>This si also sunder</b>
+    <div class="header">
+        <h1 Modern Drag & Drop Interface</h1>
+        <p>Drag items from the source to the drop zone</p>
+    </div>
+    <div class="container">
+        <div id="left">
+            <div class="list" draggable="true"><img src="icon.png" alt="icon">List Item 1</div>
+            <div class="list" draggable="true"><img src="icon.png" alt="icon">List Item 2</div>
+            <div class="list" draggable="true"><img src="icon.png" alt="icon">List Item 3</div>
+            <div class="list" draggable="true"><img src="icon.png" alt="icon">List Item 4</div>
+        </div>
+        <div id="right"></div>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
