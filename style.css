@@ -1,0 +1,234 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #ff6b6b 0%, #4ecdc4 50%, #45b7d1 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+    color: white;
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(45deg, #fff, #f0f0f0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.header p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    font-weight: 300;
+}
+
+.container {
+    display: flex;
+    gap: 40px;
+    max-width: 1000px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+#left, #right {
+    flex: 1;
+    min-height: 500px;
+    border: 3px dashed rgba(255, 255, 255, 0.3);
+    border-radius: 15px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow-y: auto;
+}
+
+#left::before {
+   
+    position: absolute;
+    top: -15px;
+    left: 20px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+#right::before {
+    
+    position: absolute;
+    top: -15px;
+    left: 20px;
+    background: linear-gradient(135deg, #f093fb, #f5576c);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(240, 147, 251, 0.3);
+}
+
+.drag-over {
+    border-color: #4ade80 !important;
+    background: rgba(74, 222, 128, 0.1) !important;
+    transform: scale(1.02);
+    box-shadow: 0 0 30px rgba(74, 222, 128, 0.3);
+}
+
+.list {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    padding: 15px 20px;
+    margin: 15px 0;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    cursor: grab;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.list::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.list:hover::before {
+    left: 100%;
+}
+
+.list:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+    background: linear-gradient(135deg, #764ba2, #667eea);
+}
+
+.list img {
+    width: 24px;
+    height: 24px;
+    margin-right: 15px;
+    transition: transform 0.3s ease;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 2px;
+}
+
+.list:hover img {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.dragging {
+    opacity: 0.5;
+    transform: rotate(5deg) scale(1.05);
+    z-index: 1000;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+}
+
+.dropped {
+    animation: dropSuccess 0.3s ease;
+}
+
+@keyframes dropSuccess {
+    0% {
+        transform: scale(1.1);
+        background: linear-gradient(135deg, #4ade80, #22c55e);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+#right:empty::after {
+    content: "Drop items here! 🎯";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 18px;
+    font-weight: 500;
+    text-align: center;
+    pointer-events: none;
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px;
+    }
+    
+    #left, #right {
+        min-height: 300px;
+    }
+    
+    .list {
+        padding: 12px 15px;
+        margin: 10px 0;
+    }
+    
+    .list img {
+        width: 16px;
+        height: 16px;
+        margin-right: 10px;
+    }
+}
+
+#left::-webkit-scrollbar,
+#right::-webkit-scrollbar {
+    width: 6px;
+}
+
+#left::-webkit-scrollbar-track,
+#right::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+}
+
+#left::-webkit-scrollbar-thumb,
+#right::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+}
+
+#left::-webkit-scrollbar-thumb:hover,
+#right::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
